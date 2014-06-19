@@ -2,38 +2,96 @@
 # You almost certainly shouldn't edit it.
 
 set color
+define "" F53
+define "agi" A55
+define "attributes" A51
+define "bod" A54
+define "cha" A61
+define "edge" A63
+define "int" A60
+define "log" A59
+define "magic" A62
+define "play" A0
+define "rea" A56
+define "spellcasting" F53
+define "str" A57
+define "wil" A58
 color 1 = @white;@black
-leftstring A16 = "Attributes"
-leftstring A17 = "Current"
-leftstring B17 = "Max"
-leftstring A18 = "bod"
-let A18 = 4
-let B18 = 6
-leftstring A19 = "agi"
-let A19 = 3
-let B19 = 7
-leftstring A20 = "rea"
-let A20 = 5
-let B20 = 6
-leftstring A21 = "str"
-let A21 = 1
-let B21 = 6
-leftstring A22 = "wil"
-let A22 = 5
-let B22 = 6
-leftstring A23 = "log"
-let A23 = 3
-let B23 = 6
-leftstring A24 = "int"
-let A24 = 4
-let B24 = 6
-leftstring A25 = "cha"
-let A25 = 6
-let B25 = 8
-leftstring A26 = "magic"
-let A26 = 6
-let B26 = 6
-leftstring A27 = "edge"
-let A27 = 4
-let B27 = 6
-goto A30 A1
+label play = "RD"
+leftstring A2 = "Initiative"
+rightstring B2 = "val"
+rightstring C2 = "roll"
+rightstring D2 = "bonus"
+rightstring A3 = "Normal"
+let B3 = rea+int
+rightstring C3 = "1D6"
+rightstring D3 = "+3 and 1D6"
+rightstring A4 = "Astral"
+let B4 = int*2
+rightstring C4 = "2D6"
+leftstring A6 = "Drain Resist"
+leftstring A20 = "Active Pool Modifiers"
+leftstring A21 = "Type"
+leftstring C21 = "Amount"
+leftstring A22 = "detect magic, f3"
+let C22 = -2
+leftstring A25 = "Stun Damage"
+let C25 = 0
+leftstring A26 = "Physical Damage"
+let C26 = 0
+rightstring B27 = "Total"
+let C27 = @sum(C22:C26)
+leftstring attributes = "Attributes"
+leftstring D51 = "Skills"
+leftstring F51 = "Points"
+leftstring A53 = "Current"
+leftstring B53 = "Max"
+leftstring D53 = "Spellcasting"
+let spellcasting = 6
+leftstring bod = "bod"
+let bod = 4
+let B54 = 6
+leftstring D54 = "Summoning"
+let F54 = 5
+leftstring agi = "agi"
+let agi = 3
+let B55 = 7
+leftstring D55 = "Automatics"
+let F55 = 3
+leftstring rea = "rea"
+let rea = 5
+let B56 = 6
+leftstring D56 = "Counterspelling"
+let F56 = 3
+leftstring str = "str"
+let str = 1
+let B57 = 6
+leftstring D57 = "Perception"
+let F57 = 3
+leftstring wil = "wil"
+let wil = 5
+let B58 = 6
+leftstring D58 = "Astral Combat"
+let F58 = 2
+leftstring log = "log"
+let log = 3
+let B59 = 6
+leftstring D59 = "Computer"
+let F59 = 1
+leftstring int = "int"
+let int = 4
+let B60 = 6
+leftstring D60 = "Con"
+let F60 = 2
+leftstring cha = "cha"
+let cha = 6
+let B61 = 8
+leftstring D61 = "Assensing"
+let F61 = 3
+leftstring magic = "magic"
+let magic = 6
+let B62 = 6
+leftstring edge = "edge"
+let edge = 4
+let B63 = 6
+goto C27 play
