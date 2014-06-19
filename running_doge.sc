@@ -2,39 +2,62 @@
 # You almost certainly shouldn't edit it.
 
 set color
-define "" F76
-define "agi" A78
-define "assensing" F84
-define "astral_combat" F81
-define "attributes" A74
-define "automatics" F78
-define "bod" A77
-define "cha" A84
-define "computer" F82
-define "con" F83
-define "counterspelling" F79
-define "damage_pool_mod" C56
-define "detect_pool_mod" C62
+define "" F86
+define "agi" A88
+define "assensing" F94
+define "astral_combat" F91
+define "attributes" A84
+define "automatics" F88
+define "bod" A87
+define "cha" A94
+define "computer" F92
+define "con" F93
+define "counterspelling" F89
+define "damage_pool_mod" C66
+define "detect_pool_mod" C72
 define "drain_resist" A7
-define "edge" A86
-define "int" A83
-define "log" A82
-define "magic" A85
-define "perception" F80
+define "edge" A96
+define "int" A93
+define "karma" C115
+define "log" A92
+define "magic" A95
+define "perception" F90
+define "physical_mod" D30
 define "play" A0
-define "pool_mod" C50
-define "rea" A79
-define "spellcasting" F76
-define "str" A80
-define "summoning" F77
-define "wil" A81
+define "pool_mod" C60
+define "qualities" C130
+define "rea" A89
+define "rolls" A10
+define "spellcasting" F86
+define "str" A90
+define "stun_mod" D23
+define "summoning" F87
+define "wil" A91
 color 1 = @white;@black
 color 2 = @black;@blue
 color 3 = @white;@green
-color A43:pool_mod 2
-color A52:damage_pool_mod 2
-color A58:detect_pool_mod 2
-color A10:A10 3
+color 8 = @black;@white
+color A53:pool_mod 2
+color A62:damage_pool_mod 2
+color A68:detect_pool_mod 2
+color rolls:rolls 3
+color A19:C21 3
+color A19:C21 4
+color A22:B22 4
+color C22:C22 8
+color A26:C28 4
+color A29:A29 4
+color B29:C29 8
+color A18:A18 2
+color A18:A18 3
+color A25:A25 3
+color A101:A101 3
+color A101:karma 2
+color A101:A101 3
+color A117:C122 2
+color A117:A117 3
+color A124:qualities 2
+color A124:A124 3
 label play = "RD"
 leftstring A2 = "Initiative"
 rightstring B2 = "val"
@@ -63,87 +86,175 @@ rightstring E8 = "Mental"
 label F8 = "?"
 rightstring E9 = "Social"
 label F9 = "?"
-leftstring A10 = "Rolls"
+leftstring rolls = "Rolls"
 leftstring A11 = "Perception"
+let B11 = perception+int+pool_mod
 leftstring A12 = "Spells"
+let B12 = spellcasting+magic+pool_mod
 leftstring A13 = "Dmg Spells"
+let B13 = spellcasting+magic+damage_pool_mod+pool_mod
 leftstring A14 = "Dtc Spells"
+let B14 = spellcasting+magic+detect_pool_mod+pool_mod
 leftstring A15 = "Dodge"
-leftstring A43 = "Active Pool Modifiers"
-leftstring A44 = "Type"
-leftstring C44 = "Amount"
-leftstring A45 = "detect magic, f3"
-let C45 = -2
-leftstring A48 = "Stun Damage"
-let C48 = 0
-leftstring A49 = "Physical Damage"
-let C49 = -1
-rightstring A50 = "----------"
-rightstring B50 = "Total"
-let pool_mod = @sum(C45:C49)
-leftstring A52 = "Damage Spell Pool Modifiers"
-leftstring A53 = "Spell Focus"
-let C53 = 3
-rightstring A56 = "----------"
-rightstring B56 = "Total"
-let damage_pool_mod = @sum(C53:C55)
-leftstring A58 = "Detect Spell Pool Modifiers"
-leftstring A59 = "Spell Focus"
-let C59 = 4
-rightstring A62 = "----------"
-rightstring B62 = "Total"
-let detect_pool_mod = @sum(C59:C61)
+let B15 = rea+int+pool_mod
+leftstring A18 = "Stun Track"
+let B18 = @rnd(wil/2+8)
+leftstring D18 = "Pool mod"
+rightstring E18 = "Notes"
+leftstring A19 = "drain"
+let A19 = 1
+let D19 = @sum(A19:C19)>2?-1:0
+let D20 = @sum(A20:C20)>2?-1:0
+let D21 = @sum(A20:C20)>2?-1:0
+let D22 = @sum(A21:C21)>2?-1:0
+leftstring A23 = "SP Left"
+leftstring B23 = "%"
+let B23 = 100-@sum(A19:C22)/B18*100
+rightstring C23 = "Total"
+let stun_mod = @sum(D19:D22)
+leftstring A25 = "Phys Track"
+let B25 = bod/2+8
+leftstring D25 = "Pool mod"
+rightstring E25 = "Notes"
+leftstring A26 = "nat"
+let A26 = 1
+leftstring B26 = "nat"
+let B26 = 1
+leftstring C26 = "nat"
+let C26 = 1
+let D26 = @sum(A26:C26)>2?-1:0
+let D27 = @sum(A27:C27)>2?-1:0
+let D28 = @sum(A28:C28)>2?-1:0
+let D29 = @sum(A29:C29)>2?-1:0
+leftstring A30 = "HP Left"
+leftstring B30 = "%"
+let B30 = 100-@sum(A26:C29)/B25*100
+rightstring C30 = "Total"
+let physical_mod = @sum(D26:D29)
+leftstring A32 = "Spells"
+leftstring A53 = "Active Pool Modifiers"
+leftstring A54 = "Type"
+leftstring C54 = "Amount"
+leftstring A55 = "detect magic, f3"
+let C55 = -2
+leftstring A58 = "Stun Damage"
+let C58 = stun_mod
+leftstring A59 = "Physical Damage"
+let C59 = physical_mod
+rightstring A60 = "----------"
+rightstring B60 = "Total"
+let pool_mod = @sum(C55:C59)
+leftstring A62 = "Damage Spell Pool Modifiers"
+leftstring A63 = "Spell Focus"
+let C63 = 3
+rightstring A66 = "----------"
+rightstring B66 = "Total"
+let damage_pool_mod = @sum(C63:C65)
+leftstring A68 = "Detect Spell Pool Modifiers"
+leftstring A69 = "Spell Focus"
+let C69 = 4
+rightstring A72 = "----------"
+rightstring B72 = "Total"
+let detect_pool_mod = @sum(C69:C71)
 leftstring attributes = "Attributes"
-leftstring D74 = "Skills"
-leftstring F74 = "Points"
-leftstring A76 = "Current"
-leftstring B76 = "Max"
-leftstring D76 = "Spellcasting"
+leftstring D84 = "Skills"
+leftstring F84 = "Points"
+leftstring A86 = "Current"
+leftstring B86 = "Max"
+leftstring D86 = "Spellcasting"
 let spellcasting = 6
 leftstring bod = "bod"
 let bod = 4
-let B77 = 6
-leftstring D77 = "Summoning"
+let B87 = 6
+leftstring D87 = "Summoning"
 let summoning = 5
 leftstring agi = "agi"
 let agi = 3
-let B78 = 7
-leftstring D78 = "Automatics"
+let B88 = 7
+leftstring C88 = "-1 leg brk"
+leftstring D88 = "Automatics"
 let automatics = 3
 leftstring rea = "rea"
 let rea = 5
-let B79 = 6
-leftstring D79 = "Counterspelling"
+let B89 = 6
+leftstring D89 = "Counterspelling"
 let counterspelling = 3
 leftstring str = "str"
 let str = 1
-let B80 = 6
-leftstring D80 = "Perception"
+let B90 = 6
+leftstring D90 = "Perception"
 let perception = 3
 leftstring wil = "wil"
 let wil = 5
-let B81 = 6
-leftstring D81 = "Astral Combat"
+let B91 = 6
+leftstring D91 = "Astral Combat"
 let astral_combat = 2
 leftstring log = "log"
 let log = 3
-let B82 = 6
-leftstring D82 = "Computer"
+let B92 = 6
+leftstring D92 = "Computer"
 let computer = 1
 leftstring int = "int"
 let int = 4
-let B83 = 6
-leftstring D83 = "Con"
+let B93 = 6
+leftstring D93 = "Con"
 let con = 2
 leftstring cha = "cha"
 let cha = 6
-let B84 = 8
-leftstring D84 = "Assensing"
+let B94 = 8
+leftstring D94 = "Assensing"
 let assensing = 3
 leftstring magic = "magic"
 let magic = 6
-let B85 = 6
+let B95 = 6
 leftstring edge = "edge"
 let edge = 4
-let B86 = 6
-goto play play
+let B96 = 6
+leftstring A101 = "Karma"
+leftstring B101 = "Type"
+leftstring C101 = "Amount"
+leftstring A102 = "Starting"
+let C102 = 25
+leftstring A103 = "Qualities"
+leftstring B103 = "totaled"
+let C103 = qualities
+leftstring A104 = "dtc spell focus"
+let C104 = -8
+leftstring A105 = "dmg spell focus"
+let C105 = -6
+leftstring A106 = "Extra spell"
+let C106 = -5
+leftstring A108 = "Bonus Game 1"
+let C108 = 8
+leftstring A109 = "Bonus Game 2"
+let C109 = 10
+rightstring A115 = "Unspent"
+let karma = @sum(C102:C114)
+leftstring A117 = "Priority"
+rightstring B117 = "Selection"
+rightstring C117 = "Extra"
+leftstring A118 = "A"
+leftstring B118 = "Magic"
+leftstring A119 = "B"
+leftstring B119 = "Attributes"
+let C119 = 20
+leftstring A120 = "C"
+leftstring B120 = "Race"
+rightstring C120 = "Elf 3"
+leftstring A121 = "D"
+leftstring B121 = "Money"
+let C121 = 50000
+leftstring A122 = "E"
+leftstring B122 = "Skills"
+let C122 = 18
+leftstring A124 = "Qualities"
+leftstring B124 = "Rating"
+leftstring C124 = "Karma"
+leftstring A125 = "Focused Concentration"
+let B125 = 3
+let C125 = -12
+leftstring A126 = "Ork Poser"
+let C126 = 6
+rightstring B130 = "Total"
+let qualities = @sum(C125:C129)
+goto A33 play
