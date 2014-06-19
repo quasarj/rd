@@ -29,6 +29,7 @@ define "qualities" C130
 define "rea" A89
 define "rolls" A10
 define "spellcasting" F86
+define "spells" A32
 define "str" A90
 define "stun_mod" D23
 define "summoning" F87
@@ -58,6 +59,8 @@ color A117:C122 2
 color A117:A117 3
 color A124:qualities 2
 color A124:A124 3
+color spells:F43 2
+color spells:spells 3
 label play = "RD"
 leftstring A2 = "Initiative"
 rightstring B2 = "val"
@@ -131,7 +134,58 @@ leftstring B30 = "%"
 let B30 = 100-@sum(A26:C29)/B25*100
 rightstring C30 = "Total"
 let physical_mod = @sum(D26:D29)
-leftstring A32 = "Spells"
+leftstring spells = "Spells"
+leftstring C32 = "Drain"
+leftstring D32 = "Class"
+leftstring E32 = "Type"
+leftstring F32 = "Dmg Type"
+leftstring A33 = "Detect Enemies"
+leftstring C33 = "F - 2"
+leftstring D33 = "Detection"
+leftstring F33 = "M"
+leftstring A34 = "Detect Individual"
+leftstring C34 = "F - 3"
+leftstring D34 = "Detection"
+leftstring F34 = "M"
+leftstring A35 = "Detect Magic"
+leftstring C35 = "F - 2"
+leftstring D35 = "Detection"
+leftstring F35 = "M"
+leftstring A36 = "Mindlink"
+leftstring C36 = "F - 1"
+leftstring D36 = "Detection"
+leftstring F36 = "M"
+leftstring A37 = "Mind Probe"
+leftstring C37 = "F"
+leftstring D37 = "Detection"
+leftstring F37 = "M"
+leftstring A38 = "Clairaudience"
+leftstring C38 = "F - 3"
+leftstring D38 = "Detection"
+leftstring F38 = "M"
+leftstring A39 = "Stunball"
+leftstring C39 = "F"
+leftstring D39 = "Combat"
+leftstring E39 = "Stunball"
+leftstring F39 = "M"
+leftstring A40 = "Lightning Bolt"
+leftstring C40 = "F - 3"
+leftstring D40 = "Combat"
+leftstring E40 = "Indirect"
+leftstring F40 = "P"
+leftstring A41 = "Manabolt"
+leftstring C41 = "F - 3"
+leftstring D41 = "Combat"
+leftstring E41 = "Direct"
+leftstring F41 = "M"
+leftstring A42 = "Increase Reflexes"
+leftstring C42 = "F"
+leftstring D42 = "Health"
+leftstring F42 = "P"
+leftstring A43 = "Heal"
+leftstring C43 = "F - 4"
+leftstring D43 = "Health"
+leftstring F43 = "M"
 leftstring A53 = "Active Pool Modifiers"
 leftstring A54 = "Type"
 leftstring C54 = "Amount"
@@ -257,4 +311,4 @@ leftstring A126 = "Ork Poser"
 let C126 = 6
 rightstring B130 = "Total"
 let qualities = @sum(C125:C129)
-goto A33 play
+goto A31 A2
