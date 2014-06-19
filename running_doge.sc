@@ -2,21 +2,39 @@
 # You almost certainly shouldn't edit it.
 
 set color
-define "" F53
-define "agi" A55
-define "attributes" A51
-define "bod" A54
-define "cha" A61
-define "edge" A63
-define "int" A60
-define "log" A59
-define "magic" A62
+define "" F76
+define "agi" A78
+define "assensing" F84
+define "astral_combat" F81
+define "attributes" A74
+define "automatics" F78
+define "bod" A77
+define "cha" A84
+define "computer" F82
+define "con" F83
+define "counterspelling" F79
+define "damage_pool_mod" C56
+define "detect_pool_mod" C62
+define "drain_resist" A7
+define "edge" A86
+define "int" A83
+define "log" A82
+define "magic" A85
+define "perception" F80
 define "play" A0
-define "rea" A56
-define "spellcasting" F53
-define "str" A57
-define "wil" A58
+define "pool_mod" C50
+define "rea" A79
+define "spellcasting" F76
+define "str" A80
+define "summoning" F77
+define "wil" A81
 color 1 = @white;@black
+color 2 = @black;@blue
+color 3 = @white;@green
+color A43:pool_mod 2
+color A52:damage_pool_mod 2
+color A58:detect_pool_mod 2
+color A10:A10 3
 label play = "RD"
 leftstring A2 = "Initiative"
 rightstring B2 = "val"
@@ -25,73 +43,107 @@ rightstring D2 = "bonus"
 rightstring A3 = "Normal"
 let B3 = rea+int
 rightstring C3 = "1D6"
-rightstring D3 = "+3 and 1D6"
+rightstring D3 = "3 + 1D6"
+leftstring E3 = "from improved reflexes"
 rightstring A4 = "Astral"
 let B4 = int*2
 rightstring C4 = "2D6"
+rightstring D4 = "3 + 1D6"
 leftstring A6 = "Drain Resist"
-leftstring A20 = "Active Pool Modifiers"
-leftstring A21 = "Type"
-leftstring C21 = "Amount"
-leftstring A22 = "detect magic, f3"
-let C22 = -2
-leftstring A25 = "Stun Damage"
-let C25 = 0
-leftstring A26 = "Physical Damage"
-let C26 = 0
-rightstring B27 = "Total"
-let C27 = @sum(C22:C26)
+leftstring C6 = "Edge"
+leftstring E6 = "Limits"
+let drain_resist = wil+cha+pool_mod
+leftstring C7 = "Max"
+let C7 = edge
+rightstring E7 = "Physical"
+label F7 = "?"
+leftstring C8 = "Cur"
+let C8 = 4
+rightstring E8 = "Mental"
+label F8 = "?"
+rightstring E9 = "Social"
+label F9 = "?"
+leftstring A10 = "Rolls"
+leftstring A11 = "Perception"
+leftstring A12 = "Spells"
+leftstring A13 = "Dmg Spells"
+leftstring A14 = "Dtc Spells"
+leftstring A15 = "Dodge"
+leftstring A43 = "Active Pool Modifiers"
+leftstring A44 = "Type"
+leftstring C44 = "Amount"
+leftstring A45 = "detect magic, f3"
+let C45 = -2
+leftstring A48 = "Stun Damage"
+let C48 = 0
+leftstring A49 = "Physical Damage"
+let C49 = -1
+rightstring A50 = "----------"
+rightstring B50 = "Total"
+let pool_mod = @sum(C45:C49)
+leftstring A52 = "Damage Spell Pool Modifiers"
+leftstring A53 = "Spell Focus"
+let C53 = 3
+rightstring A56 = "----------"
+rightstring B56 = "Total"
+let damage_pool_mod = @sum(C53:C55)
+leftstring A58 = "Detect Spell Pool Modifiers"
+leftstring A59 = "Spell Focus"
+let C59 = 4
+rightstring A62 = "----------"
+rightstring B62 = "Total"
+let detect_pool_mod = @sum(C59:C61)
 leftstring attributes = "Attributes"
-leftstring D51 = "Skills"
-leftstring F51 = "Points"
-leftstring A53 = "Current"
-leftstring B53 = "Max"
-leftstring D53 = "Spellcasting"
+leftstring D74 = "Skills"
+leftstring F74 = "Points"
+leftstring A76 = "Current"
+leftstring B76 = "Max"
+leftstring D76 = "Spellcasting"
 let spellcasting = 6
 leftstring bod = "bod"
 let bod = 4
-let B54 = 6
-leftstring D54 = "Summoning"
-let F54 = 5
+let B77 = 6
+leftstring D77 = "Summoning"
+let summoning = 5
 leftstring agi = "agi"
 let agi = 3
-let B55 = 7
-leftstring D55 = "Automatics"
-let F55 = 3
+let B78 = 7
+leftstring D78 = "Automatics"
+let automatics = 3
 leftstring rea = "rea"
 let rea = 5
-let B56 = 6
-leftstring D56 = "Counterspelling"
-let F56 = 3
+let B79 = 6
+leftstring D79 = "Counterspelling"
+let counterspelling = 3
 leftstring str = "str"
 let str = 1
-let B57 = 6
-leftstring D57 = "Perception"
-let F57 = 3
+let B80 = 6
+leftstring D80 = "Perception"
+let perception = 3
 leftstring wil = "wil"
 let wil = 5
-let B58 = 6
-leftstring D58 = "Astral Combat"
-let F58 = 2
+let B81 = 6
+leftstring D81 = "Astral Combat"
+let astral_combat = 2
 leftstring log = "log"
 let log = 3
-let B59 = 6
-leftstring D59 = "Computer"
-let F59 = 1
+let B82 = 6
+leftstring D82 = "Computer"
+let computer = 1
 leftstring int = "int"
 let int = 4
-let B60 = 6
-leftstring D60 = "Con"
-let F60 = 2
+let B83 = 6
+leftstring D83 = "Con"
+let con = 2
 leftstring cha = "cha"
 let cha = 6
-let B61 = 8
-leftstring D61 = "Assensing"
-let F61 = 3
+let B84 = 8
+leftstring D84 = "Assensing"
+let assensing = 3
 leftstring magic = "magic"
 let magic = 6
-let B62 = 6
+let B85 = 6
 leftstring edge = "edge"
 let edge = 4
-let B63 = 6
-goto C27 play
+let B86 = 6
+goto play play
