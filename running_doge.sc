@@ -2,6 +2,13 @@
 # You almost certainly shouldn't edit it.
 
 set color
+format A 10 0 0
+format B 10 0 0
+format C 10 0 0
+format D 10 0 0
+format E 10 0 0
+format F 10 0 0
+format G 10 0 0
 define "" F86
 define "agi" A88
 define "assensing" F94
@@ -22,7 +29,7 @@ define "karma" C115
 define "log" A92
 define "magic" A95
 define "perception" F90
-define "physical_mod" D30
+define "physical_mod" K13
 define "play" A0
 define "pool_mod" C60
 define "qualities" C130
@@ -31,7 +38,7 @@ define "rolls" A10
 define "spellcasting" F86
 define "spells" A32
 define "str" A90
-define "stun_mod" D23
+define "stun_mod" K6
 define "summoning" F87
 define "wil" A91
 color 1 = @white;@black
@@ -42,16 +49,16 @@ color A53:pool_mod 2
 color A62:damage_pool_mod 2
 color A68:detect_pool_mod 2
 color rolls:rolls 3
-color A19:C21 3
-color A19:C21 4
-color A22:B22 4
-color C22:C22 8
-color A26:C28 4
-color A29:A29 4
-color B29:C29 8
-color A18:A18 2
-color A18:A18 3
-color A25:A25 3
+color H2:J4 3
+color H2:J4 4
+color H5:I5 4
+color J5:J5 8
+color H9:J11 4
+color H12:H12 4
+color I12:J12 8
+color H1:H1 2
+color H1:H1 3
+color H8:H8 3
 color A101:A101 3
 color A101:karma 2
 color A101:A101 3
@@ -62,22 +69,37 @@ color A124:A124 3
 color spells:F43 2
 color spells:spells 3
 label play = "RD"
+leftstring H1 = "Stun Track"
+let I1 = @rnd(wil/2+8)
+leftstring K1 = "Pool mod"
+rightstring L1 = "Notes"
 leftstring A2 = "Initiative"
 rightstring B2 = "val"
 rightstring C2 = "roll"
 rightstring D2 = "bonus"
+leftstring H2 = "drain"
+let H2 = 1
+let K2 = @sum(H2:J2)>2?-1:0
 rightstring A3 = "Normal"
 let B3 = rea+int
 rightstring C3 = "1D6"
 rightstring D3 = "3 + 1D6"
 leftstring E3 = "from improved reflexes"
+let K3 = @sum(H3:J3)>2?-1:0
 rightstring A4 = "Astral"
 let B4 = int*2
 rightstring C4 = "2D6"
 rightstring D4 = "3 + 1D6"
+let K4 = @sum(H3:J3)>2?-1:0
+let K5 = @sum(H4:J4)>2?-1:0
 leftstring A6 = "Drain Resist"
 leftstring C6 = "Edge"
 leftstring E6 = "Limits"
+leftstring H6 = "SP Left"
+leftstring I6 = "%"
+let I6 = 100-@sum(H2:J5)/I1*100
+rightstring J6 = "Total"
+let stun_mod = @sum(K2:K5)
 let drain_resist = wil+cha+pool_mod
 leftstring C7 = "Max"
 let C7 = edge
@@ -87,53 +109,38 @@ leftstring C8 = "Cur"
 let C8 = 4
 rightstring E8 = "Mental"
 label F8 = "?"
+leftstring H8 = "Phys Track"
+let I8 = bod/2+8
+leftstring K8 = "Pool mod"
+rightstring L8 = "Notes"
 rightstring E9 = "Social"
 label F9 = "?"
+leftstring H9 = "nat"
+let H9 = 1
+leftstring I9 = "nat"
+let I9 = 1
+leftstring J9 = "nat"
+let J9 = 1
+let K9 = @sum(H9:J9)>2?-1:0
 leftstring rolls = "Rolls"
+let K10 = @sum(H10:J10)>2?-1:0
 leftstring A11 = "Perception"
 let B11 = perception+int+pool_mod
+let K11 = @sum(H11:J11)>2?-1:0
 leftstring A12 = "Spells"
 let B12 = spellcasting+magic+pool_mod
+let K12 = @sum(H12:J12)>2?-1:0
 leftstring A13 = "Dmg Spells"
 let B13 = spellcasting+magic+damage_pool_mod+pool_mod
+leftstring H13 = "HP Left"
+leftstring I13 = "%"
+let I13 = 100-@sum(H9:J12)/I8*100
+rightstring J13 = "Total"
+let physical_mod = @sum(K9:K12)
 leftstring A14 = "Dtc Spells"
 let B14 = spellcasting+magic+detect_pool_mod+pool_mod
 leftstring A15 = "Dodge"
 let B15 = rea+int+pool_mod
-leftstring A18 = "Stun Track"
-let B18 = @rnd(wil/2+8)
-leftstring D18 = "Pool mod"
-rightstring E18 = "Notes"
-leftstring A19 = "drain"
-let A19 = 1
-let D19 = @sum(A19:C19)>2?-1:0
-let D20 = @sum(A20:C20)>2?-1:0
-let D21 = @sum(A20:C20)>2?-1:0
-let D22 = @sum(A21:C21)>2?-1:0
-leftstring A23 = "SP Left"
-leftstring B23 = "%"
-let B23 = 100-@sum(A19:C22)/B18*100
-rightstring C23 = "Total"
-let stun_mod = @sum(D19:D22)
-leftstring A25 = "Phys Track"
-let B25 = bod/2+8
-leftstring D25 = "Pool mod"
-rightstring E25 = "Notes"
-leftstring A26 = "nat"
-let A26 = 1
-leftstring B26 = "nat"
-let B26 = 1
-leftstring C26 = "nat"
-let C26 = 1
-let D26 = @sum(A26:C26)>2?-1:0
-let D27 = @sum(A27:C27)>2?-1:0
-let D28 = @sum(A28:C28)>2?-1:0
-let D29 = @sum(A29:C29)>2?-1:0
-leftstring A30 = "HP Left"
-leftstring B30 = "%"
-let B30 = 100-@sum(A26:C29)/B25*100
-rightstring C30 = "Total"
-let physical_mod = @sum(D26:D29)
 leftstring spells = "Spells"
 leftstring C32 = "Drain"
 leftstring D32 = "Class"
@@ -311,4 +318,4 @@ leftstring A126 = "Ork Poser"
 let C126 = 6
 rightstring B130 = "Total"
 let qualities = @sum(C125:C129)
-goto A31 A2
+goto A18 play
