@@ -1,5 +1,6 @@
 #!/usr/bin/env python2
 
+import numpy
 import random
 random.seed()
 
@@ -7,18 +8,10 @@ def roll_d6():
     return random.randint(1, 6)
 
 def count_hits(rolls):
-    count = 0
-    for i in rolls:
-        if i >= 5:
-            count += 1
-    return count
+    return len([i for i in rolls if i >= 5])
 
 def count_misses(rolls):
-    count = 0
-    for i in rolls:
-        if i == 1:
-            count += 1
-    return count
+    return len([i for i in rolls if i == 1])
 
 def score_rolls(rolls):
     hits = count_hits(rolls)
@@ -39,6 +32,17 @@ def roll(dice):
 
     return (score_rolls(rolls), rolls)
 
+def print_details(rolls):
+    print "Details:"
+    print "# C"
+    width = 50
+    total = float(len(rolls))
+    counts, bins = numpy.histogram(rolls, bins=[1, 2, 3, 4, 5, 6, 7])
+    m = float(max(counts))
+    for i, c in enumerate(counts):
+        print i + 1, c, int((c / m) * width) * '=' + '>'
+        # print i + 1, c, int((c / m) * width)
+
 def test():
     assert score_rolls([1, 2, 2, 3]) == 0
     assert score_rolls([6, 6, 6, 6]) == 4
@@ -57,7 +61,12 @@ if __name__ == '__main__':
     print "All tests passed! Looks like your environment is sane.\n"
 
     while True:
-        dice = raw_input("How many dice to roll? ")
+        try:
+            dice = raw_input("How many dice to roll? ")
+        except:
+            print
+            break
+
         if dice in ['exit', 'quit', 'q']:
             break
         try:
@@ -70,7 +79,7 @@ if __name__ == '__main__':
         result, details = roll(dice)
         details.sort()
         print "Result: {}".format(result)
-        print "Details: {}".format(details)
+        print_details(details)
         print
 
 
