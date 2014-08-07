@@ -32,6 +32,7 @@ define "int" A62
 define "karma" C81
 define "log" A61
 define "magic" A64
+define "money" A98
 define "perception" G59
 define "physical_mod" K13
 define "play" A0
@@ -72,6 +73,8 @@ color A90:qualities 2
 color A90:A90 3
 color spells:F29 2
 color spells:spells 3
+color A121:C122 1
+color money:C129 2
 label play = "RD"
 leftstring H1 = "Stun Track"
 let I1 = @rnd(wil/2+8)
@@ -81,20 +84,17 @@ leftstring A2 = "Initiative"
 rightstring B2 = "val"
 rightstring C2 = "roll"
 rightstring D2 = "bonus"
-leftstring H2 = "d"
 let H2 = 1
 let K2 = @sum(H2:J2)>2?-1:0
 rightstring L2 = "d = drain damage"
 rightstring A3 = "Normal"
 let B3 = rea+int
 rightstring C3 = "1D6"
-rightstring D3 = "3 + 1D6"
 leftstring E3 = "from improved reflexes"
 let K3 = @sum(H3:J3)>2?-1:0
 rightstring A4 = "Astral"
 let B4 = int*2
 rightstring C4 = "2D6"
-rightstring D4 = "3 + 1D6"
 let K4 = @sum(H3:J3)>2?-1:0
 let K5 = @sum(H4:J4)>2?-1:0
 leftstring A6 = "Drain Resist"
@@ -119,12 +119,9 @@ leftstring K8 = "Pool mod"
 rightstring L8 = "Notes"
 rightstring E9 = "Social"
 label F9 = "?"
-leftstring H9 = "n"
-let H9 = 1
-leftstring I9 = "n"
-let I9 = 1
-leftstring J9 = "n"
-let J9 = 1
+let H9 = 0
+let I9 = 0
+let J9 = 0
 let K9 = @sum(H9:J9)>2?-1:0
 rightstring L9 = "n = natural healing only"
 leftstring rolls = "Rolls"
@@ -154,10 +151,13 @@ leftstring A19 = "Detect Enemies"
 leftstring C19 = "F - 2"
 leftstring D19 = "Detection"
 leftstring F19 = "M"
+leftstring L19 = "Age"
+let M19 = 27
 leftstring A20 = "Detect Individual"
 leftstring C20 = "F - 3"
 leftstring D20 = "Detection"
 leftstring F20 = "M"
+let L20 = @sqrt(30)*10
 leftstring A21 = "Detect Magic"
 leftstring C21 = "F - 2"
 leftstring D21 = "Detection"
@@ -201,7 +201,7 @@ leftstring A31 = "Active Pool Modifiers"
 leftstring A32 = "Type"
 leftstring C32 = "Amount"
 leftstring A33 = "detect magic, f3"
-let C33 = -2
+let C33 = 0
 leftstring A36 = "Stun Damage"
 let C36 = stun_mod
 leftstring A37 = "Physical Damage"
@@ -322,4 +322,56 @@ leftstring A92 = "Ork Poser"
 let C92 = 6
 rightstring B96 = "Total"
 let qualities = @sum(C91:C95)
-goto bod A31
+leftstring money = "Money"
+leftstring A99 = "Item"
+leftstring B99 = "Details"
+leftstring C99 = "Cost"
+leftstring A100 = "Starting Nuyen"
+let C100 = 50000
+leftstring A101 = "Colt Cobra TZ-12?"
+let C101 = -660
+leftstring A102 = "Spell Focus 4"
+leftstring B102 = "Detection"
+let C102 = -16000
+leftstring A103 = "Spell focus 3"
+leftstring B103 = "Combat"
+let C103 = -12000
+leftstring A104 = "Meta Link"
+rightstring B104 = "Commlink"
+let C104 = -100
+leftstring A105 = "Endosocpe, 2 meter"
+let C105 = -250
+leftstring A106 = "Magical Lodge 1"
+let C106 = -500
+leftstring A107 = "Reagents x 10"
+let C107 = -200
+leftstring A108 = "Dodge Scoot"
+rightstring B108 = "Bike"
+let C108 = -3000
+leftstring A109 = "Armor Jacket"
+let C109 = -1000
+leftstring A110 = "Armor Vest"
+let C110 = -500
+leftstring A111 = "Lifestyle Low x 1"
+let C111 = -4000
+leftstring A112 = "Fake Sin 3"
+let C112 = -7500
+leftstring A113 = "Fake LIcnese 3"
+let C113 = -600
+leftstring A114 = "Lined coat"
+let C114 = -900
+leftstring A116 = "Bonus game 1"
+let C116 = 15000
+leftstring A117 = "Interest from Shuzle"
+let C117 = 5000
+leftstring A118 = "Bonus game 2"
+let C118 = 8000
+leftstring A119 = "Bonus lifestyle"
+let C119 = 840
+leftstring A121 = "explosives 'n shit"
+let C121 = -8500
+leftstring A122 = "Helmet and air 'n shit"
+let C122 = -250
+rightstring A129 = "Unspent"
+let C129 = @sum(C100:C128)
+goto H3 play
